@@ -1,24 +1,16 @@
 {
-  "name": "zotero-plugin-template",
+  "name": "zotero-pdf2md",
   "type": "module",
-  "version": "3.1.0",
-  "description": "Zotero Plugin Template",
+  "version": "0.1.0",
+  "description": "Convert PDF attachments to high-quality Markdown with annotation mapping",
   "config": {
-    "addonName": "Zotero Plugin Template",
-    "addonID": "addontemplate@euclpts.com",
-    "addonRef": "addontemplate",
-    "addonInstance": "AddonTemplate",
-    "prefsPrefix": "extensions.zotero.addontemplate"
+    "addonName": "PDF to Markdown",
+    "addonID": "pdf2md@zotero-plugins.local",
+    "addonRef": "pdf2md",
+    "addonInstance": "PDF2MD",
+    "prefsPrefix": "extensions.zotero.pdf2md"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/windingwind/zotero-plugin-template.git"
-  },
-  "author": "windingwind",
-  "bugs": {
-    "url": "https://github.com/windingwind/zotero-plugin-template/issues"
-  },
-  "homepage": "https://github.com/windingwind/zotero-plugin-template#readme",
+  "author": "diamondrill",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "start": "zotero-plugin serve",
