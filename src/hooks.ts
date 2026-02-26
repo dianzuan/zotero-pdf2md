@@ -1,5 +1,6 @@
 import { getString, initLocale } from "./utils/locale";
 import { createZToolkit } from "./utils/ztoolkit";
+import { registerMenu } from "./modules/menu";
 
 async function onStartup() {
   await Promise.all([
@@ -23,6 +24,8 @@ async function onMainWindowLoad(win: _ZoteroTypes.MainWindow): Promise<void> {
   win.MozXULElement.insertFTLIfNeeded(
     `${addon.data.config.addonRef}-mainWindow.ftl`,
   );
+
+  registerMenu();
 
   // Show a brief startup notification
   new ztoolkit.ProgressWindow(addon.data.config.addonName, {
@@ -48,12 +51,23 @@ function onShutdown(): void {
   delete Zotero[addon.data.config.addonInstance];
 }
 
-// Add your hooks here. For element click, etc.
-// Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
+function onConvertPdf(): void {
+  new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+    closeOnClick: true,
+    closeTime: 3000,
+  })
+    .createLine({
+      text: getString("convert-test-ok"),
+      type: "default",
+      progress: 100,
+    })
+    .show();
+}
 
 export default {
   onStartup,
   onShutdown,
   onMainWindowLoad,
   onMainWindowUnload,
+  onConvertPdf,
 };
