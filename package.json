@@ -10,7 +10,12 @@
     "addonInstance": "PDF2MD",
     "prefsPrefix": "extensions.zotero.pdf2md"
   },
-  "author": "diamondrill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dianzuan/zotero-pdf2md.git"
+  },
+  "author": "dianzuan",
+  "homepage": "https://github.com/dianzuan/zotero-pdf2md#readme",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "start": "zotero-plugin serve",
