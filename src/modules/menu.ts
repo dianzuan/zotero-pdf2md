@@ -10,7 +10,7 @@ export function registerMenu() {
   ) as XUL.MenuPopup | null;
   if (!menuPopup) return;
 
-  ztoolkit.UI.createElement(doc, "menuitem", {
+  const menuItem = ztoolkit.UI.createElement(doc, "menuitem", {
     id: `${config.addonRef}-convert-menu`,
     attributes: {
       label: getString("menu-convert"),
@@ -25,7 +25,5 @@ export function registerMenu() {
     ],
   });
 
-  menuPopup.appendChild(
-    doc.getElementById(`${config.addonRef}-convert-menu`)!,
-  );
+  menuPopup.appendChild(menuItem);
 }
