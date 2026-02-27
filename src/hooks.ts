@@ -51,17 +51,53 @@ function onShutdown(): void {
   delete Zotero[addon.data.config.addonInstance];
 }
 
-function onConvertPdf(): void {
-  new ztoolkit.ProgressWindow(addon.data.config.addonName, {
-    closeOnClick: true,
-    closeTime: 3000,
-  })
-    .createLine({
-      text: getString("convert-test-ok"),
-      type: "default",
-      progress: 100,
+async function onConvertPdf(): Promise<void> {
+  const zoteroPane = Zotero.getActiveZoteroPane();
+  const selectedItems = zoteroPane.getSelectedItems();
+
+  if (selectedItems.length === 0) {
+    new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+      closeOnClick: true,
+      closeTime: 3000,
     })
-    .show();
+      .createLine({ text: getString("convert-no-selection"), type: "default" })
+      .show();
+    return;
+  }
+
+  // Only process regular items (not attachments/notes), find their child PDFs
+  const pdfPaths: string[] = [];
+  for (const item of selectedItems) {
+    if (item.isAttachment() || item.isNote()) continue;
+    const attachmentIds = item.getAttachments();
+    for (const id of attachmentIds) {
+      const att = Zotero.Items.get(id);
+      if (att.isPDFAttachment()) {
+        const path = await att.getFilePathAsync();
+        if (path) pdfPaths.push(path);
+      }
+    }
+  }
+
+  if (pdfPaths.length === 0) {
+    new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+      closeOnClick: true,
+      closeTime: 3000,
+    })
+      .createLine({ text: getString("convert-no-pdf"), type: "default" })
+      .show();
+    return;
+  }
+
+  // Show found PDF paths (temporary, for Step 3 verification)
+  const pw = new ztoolkit.ProgressWindow(addon.data.config.addonName, {
+    closeOnClick: true,
+    closeTime: 8000,
+  });
+  for (const p of pdfPaths) {
+    pw.createLine({ text: p, type: "default" });
+  }
+  pw.show();
 }
 
 export default {
