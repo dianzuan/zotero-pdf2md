@@ -4,3 +4,7 @@ menu-convert = Convert PDF to Markdown
 convert-test-ok = PDF to Markdown: menu click works!
 convert-no-selection = No items selected
 convert-no-pdf = No PDF attachments found
+convert-no-backend = Backend not found
+convert-progress = Converting...
+convert-done = converted
+convert-error = Conversion failed

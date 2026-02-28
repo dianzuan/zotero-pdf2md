@@ -4,3 +4,7 @@ menu-convert = 将 PDF 转换为 Markdown
 convert-test-ok = PDF to Markdown：菜单点击成功！
 convert-no-selection = 未选择任何条目
 convert-no-pdf = 未找到 PDF 附件
+convert-no-backend = 未找到转换后端
+convert-progress = 正在转换…
+convert-done = 已转换
+convert-error = 转换失败

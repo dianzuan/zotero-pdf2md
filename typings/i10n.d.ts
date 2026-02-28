@@ -3,6 +3,12 @@
 /* eslint-disable */
 // @ts-nocheck
 export type FluentMessageId =
+  | 'convert-done'
+  | 'convert-error'
+  | 'convert-no-backend'
+  | 'convert-no-pdf'
+  | 'convert-no-selection'
+  | 'convert-progress'
   | 'convert-test-ok'
   | 'menu-convert'
   | 'pref-title'
